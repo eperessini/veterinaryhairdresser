@@ -41,7 +41,7 @@ public class StatusServices {
         return response;
     }
 
-    public Response save(StatusEntity statusEntity) {
+    public Response create(StatusEntity statusEntity) {
         Response response = new Response();
         try {
             response.setData(statusRepository.save(statusEntity));

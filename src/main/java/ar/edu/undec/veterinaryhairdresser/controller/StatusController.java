@@ -35,7 +35,7 @@ public class StatusController {
 
     ///Get a single status by its ID
     @GetMapping(value = "/getbyid/{id}")
-    public ResponseEntity <Response> get(@PathVariable Integer id){
+    public ResponseEntity <Response> getById(@PathVariable Integer id){
         Response response = statusServices.findById(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -43,7 +43,7 @@ public class StatusController {
     ///Create a single appointment's status
     @PostMapping("/create")
     public ResponseEntity<Response> create(@Valid @RequestBody StatusEntity statusEntity) {
-        Response response = statusServices.save(statusEntity);
+        Response response = statusServices.create(statusEntity);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
