@@ -54,8 +54,12 @@ public class PetServices{
     public Response deleteById(Integer id) {
         Response response = new Response();
         try{
-            petRepository.deleteById(id);
-            response.setMessage("Pet Deleted.");
+            if (petRepository.existsById(id)) {
+                petRepository.deleteById(id);
+                response.setMessage("Pet Deleted.");
+            } else {
+                response.setMessage("The pet ID doesn't exists.");
+            }
         } catch (Exception e) {
             response.setMessage("An error has ocurred.");
         } return response;

@@ -41,7 +41,7 @@ public class PetController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Response> create(@RequestBody PetEntity pet){
+    public ResponseEntity<Response> create(@RequestBody PetEntity pet, Integer pet_type_id, Integer size_id){
         LOG.info("Create a pet");
         Response response = petServices.create(pet);
         return new ResponseEntity<>(response, HttpStatus.OK);
