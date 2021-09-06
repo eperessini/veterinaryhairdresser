@@ -8,18 +8,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
-
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/pets")
 public class PetController {
 
     @Autowired
     private PetServices petServices;
+    private static final Logger LOG = LoggerFactory.getLogger(PetController.class);
 
 
-    @RequestMapping()
+    @RequestMapping("/")
     public ResponseEntity<Response> list(){
         Response response = new Response();
         return new ResponseEntity<>(response, HttpStatus.OK);
@@ -39,6 +42,7 @@ public class PetController {
 
     @PostMapping("/create")
     public ResponseEntity<Response> create(@RequestBody PetEntity pet){
+        LOG.info("Create a pet");
         Response response = petServices.create(pet);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

@@ -3,6 +3,8 @@ package ar.edu.undec.veterinaryhairdresser.model;
 import javax.persistence.*;
 import java.util.Objects;
 
+import static javax.persistence.GenerationType.AUTO;
+
 @Entity
 @Table(name = "pet", schema = "public", catalog = "veterinaryhairdresser")
 public class PetEntity {
@@ -11,6 +13,7 @@ public class PetEntity {
     private String name;
 
     @Id
+    @GeneratedValue(strategy = AUTO)
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;

@@ -38,9 +38,14 @@ public class PetServices{
 
     public Response create(PetEntity pet) {
         Response response = new Response();
+
         try {
-            petRepository.save(pet);
-            response.setMessage("Pet saved.");
+            if (petRepository.existsById(pet.getId())) {
+                response.setMessage("Pet ID already exists.");
+            }else{
+                petRepository.save(pet);
+                response.setMessage("Pet saved.");
+            }
         } catch (Exception e){
             response.setMessage("Pet couldn't be saved.");
         } return response;
